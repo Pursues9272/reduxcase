@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//App.js
+import React, { Component } from 'react'
+import './App.css'
+import { connect } from 'react-redux'
+import About from './class-com/about'
+import Home from './class-com/home'
+class App extends Component {
+  render() {
+    const { count  } = this.props
+    return (
+      <div className="App">
+        <span>store：{count}</span>
+        <h1>Home</h1>
+        <Home/>
+        <h1>About</h1>
+        <About/>
+      </div>
+    )
+  }
 }
-
-export default App;
+const mapStateToProps = (state)=>({count:state.count})
+export default connect(mapStateToProps)(App)
